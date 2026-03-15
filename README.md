@@ -1,83 +1,69 @@
-# LastBench - Real-time Chat Application
+# LastBench Android App
 
-A comprehensive real-time messaging platform designed for students and communities, supporting both web and mobile platforms.
+Native Flutter mobile application for the LastBench chat platform with real-time messaging capabilities.
 
 ## 🚀 Features
 
-### Core Features
-- **User Authentication**: Secure registration and login system
 - **Real-time Chat**: Instant messaging with Socket.io
-- **Private Chats**: One-on-one conversations
-- **Group Chats**: Multi-user group conversations
-- **Online Status**: See who's online/offline
-- **File Sharing**: Share documents, images, and media
-- **Emoji Support**: Rich emoji picker integration
-- **Notifications**: Push notifications for new messages
-
-### Platform Features
-- **Web Application**: Modern React-based responsive web app
-- **Android App**: Native Flutter mobile application
-- **Cross-platform Sync**: Seamless experience across devices
+- **User Authentication**: Secure login and registration
+- **Private & Group Chats**: Multiple conversation types
+- **File Sharing**: Upload and share files
+- **Emoji Support**: Built-in emoji picker
+- **Online Status**: Real-time user presence
+- **Push Notifications**: Firebase Cloud Messaging
+- **Offline Support**: Message caching
+- **Material Design**: Modern Android UI
 
 ## 🛠 Technology Stack
 
-### Backend
-- **Node.js** - Runtime environment
-- **Express.js** - Web framework
-- **Socket.io** - Real-time communication
-- **MongoDB** - Database
-- **JWT** - Authentication
-- **Multer** - File upload handling
-
-### Frontend (Web)
-- **React.js** - UI framework
-- **Tailwind CSS** - Styling
-- **Socket.io Client** - Real-time client
-- **Axios** - HTTP client
-- **React Router** - Navigation
-
-### Mobile (Android)
-- **Flutter** - Mobile framework
+- **Flutter 3.0+** - Cross-platform framework
 - **Provider** - State management
-- **Socket.io Client** - Real-time client
+- **Socket.io Client** - Real-time communication
 - **Firebase Messaging** - Push notifications
 - **Image Picker** - File selection
+- **Shared Preferences** - Local storage
+- **Flutter Secure Storage** - Secure token storage
+- **HTTP** - API communication
+- **Local Notifications** - In-app notifications
 
 ## 📁 Project Structure
 
 ```
-lastbench/
-├── backend/                 # Node.js backend server
-│   ├── models/             # MongoDB models
-│   ├── routes/             # API routes
-│   ├── middleware/         # Express middleware
-│   ├── uploads/            # File upload directory
-│   ├── server.js           # Main server file
-│   └── package.json        # Backend dependencies
-├── frontend/               # React web application
-│   ├── src/
-│   │   ├── components/     # Reusable components
-│   │   ├── contexts/       # React contexts
-│   │   ├── pages/          # Page components
-│   │   └── App.js          # Main App component
-│   ├── public/             # Static assets
-│   └── package.json        # Frontend dependencies
-├── android/                # Flutter mobile app
-│   ├── lib/
-│   │   ├── screens/        # App screens
-│   │   ├── widgets/        # Custom widgets
-│   │   ├── providers/      # State management
-│   │   └── services/       # API services
-│   └── pubspec.yaml        # Flutter dependencies
-└── README.md               # This file
+android/
+├── lib/
+│   ├── screens/           # App screens
+│   │   ├── splash_screen.dart      # App splash screen
+│   │   ├── login_screen.dart       # Login page
+│   │   ├── register_screen.dart    # Registration page
+│   │   ├── dashboard_screen.dart   # Main dashboard
+│   │   ├── chat_screen.dart        # Private chat
+│   │   └── profile_screen.dart     # User profile
+│   ├── widgets/           # Custom widgets
+│   │   ├── custom_button.dart      # Custom button widget
+│   │   ├── custom_text_field.dart  # Custom input field
+│   │   ├── message_bubble.dart     # Chat message bubble
+│   │   ├── chat_list_item.dart     # Chat list item
+│   │   └── emoji_picker.dart      # Emoji picker widget
+│   ├── providers/         # State management
+│   │   ├── auth_provider.dart      # Authentication state
+│   │   ├── chat_provider.dart      # Chat state management
+│   │   └── socket_provider.dart    # Socket.io state
+│   ├── services/          # API and services
+│   │   ├── api_service.dart        # HTTP API service
+│   │   └── notification_service.dart # Push notifications
+│   └── main.dart          # App entry point
+├── android/               # Android-specific files
+├── ios/                   # iOS-specific files (future)
+├── pubspec.yaml           # Flutter dependencies
+└── README.md              # This file
 ```
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- MongoDB (local or cloud)
-- Flutter SDK (for mobile development)
+- Flutter SDK (v3.0 or higher)
+- Android Studio with Android SDK
+- Physical Android device or emulator
 - Git
 
 ### Installation
@@ -85,217 +71,316 @@ lastbench/
 1. **Clone the repository**
 ```bash
 git clone <repository-url>
-cd lastbench
+cd lastbench/android
 ```
 
-2. **Backend Setup**
+2. **Install dependencies**
 ```bash
-cd backend
-npm install
-```
-
-3. **Configure Environment Variables**
-Create a `.env` file in the backend directory:
-```env
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/lastbench
-JWT_SECRET=your_jwt_secret_key_here_change_in_production
-NODE_ENV=development
-```
-
-4. **Start Backend Server**
-```bash
-npm run dev
-```
-
-5. **Frontend Setup**
-```bash
-cd frontend
-npm install
-```
-
-6. **Start Frontend Development Server**
-```bash
-npm start
-```
-
-7. **Mobile App Setup**
-```bash
-cd android
 flutter pub get
 ```
 
-8. **Run Mobile App**
+3. **Check Flutter setup**
+```bash
+flutter doctor
+```
+
+4. **Run the app**
 ```bash
 flutter run
 ```
 
-## 📱 Mobile App Setup
+### Build APK
+```bash
+# Debug APK
+flutter build apk
 
-### Android Development
-1. Install Android Studio
-2. Set up Android SDK
-3. Create an Android virtual device or connect a physical device
-4. Run `flutter doctor` to verify setup
-5. Navigate to the android directory and run `flutter run`
+# Release APK
+flutter build apk --release
 
-### Firebase Setup (for Push Notifications)
-1. Create a Firebase project
-2. Download `google-services.json` and place it in `android/app/`
-3. Configure Firebase Cloud Messaging
-4. Update Firebase credentials in the app
+# App Bundle (for Play Store)
+flutter build appbundle --release
+```
+
+## 🎨 UI Components
+
+### Custom Widgets
+- **CustomButton**: Styled button with loading states
+- **CustomTextField**: Input field with validation
+- **MessageBubble**: Chat message display
+- **ChatListItem**: Conversation list item
+- **EmojiPicker**: Emoji selection widget
+
+### Design System
+- **Primary Color**: Blue (#3B82F6)
+- **Accent Colors**: Purple, Green, Red
+- **Typography**: Inter font family
+- **Icons**: Material Icons
+- **Animations**: Smooth transitions
+
+## 🔌 State Management
+
+### AuthProvider
+Manages user authentication:
+- Login/logout functionality
+- Token management
+- User profile data
+- Auto-login from storage
+
+### ChatProvider
+Handles chat functionality:
+- Message history
+- User conversations
+- Group management
+- File uploads
+
+### SocketProvider
+Real-time communication:
+- Socket connection
+- Online users
+- Message events
+- Typing indicators
+
+## 📱 Screens Overview
+
+### Splash Screen
+- Animated logo
+- App initialization
+- Authentication check
+- Navigation to appropriate screen
+
+### Login Screen
+- Email/password inputs
+- Form validation
+- Loading states
+- Error handling
+- Registration link
+
+### Register Screen
+- Username, email, password fields
+- Password confirmation
+- Validation feedback
+- Auto-login after registration
+
+### Dashboard
+- Tab navigation (Chats/Groups/Users)
+- Recent conversations
+- Online users list
+- Search functionality
+- User profile access
+
+### Chat Screen
+- Real-time messaging
+- Message history
+- Emoji picker
+- File sharing
+- Typing indicators
+- Online status
+
+### Profile Screen
+- User information display
+- Profile picture upload
+- Username editing
+- Logout functionality
 
 ## 🔧 Configuration
 
-### Backend Configuration
-- Update MongoDB connection string in `.env`
-- Configure JWT secret for production
-- Set up file upload limits and allowed types
-- Configure CORS settings for production domains
+### Environment Setup
+Update API base URL in `lib/services/api_service.dart`:
+```dart
+static const String _baseUrl = 'http://your-server-url:5000/api';
+```
 
-### Frontend Configuration
-- Update API base URL in `src/contexts/AuthContext.js`
-- Configure Socket.io server URL
-- Set up Firebase Cloud Messaging for web notifications
+### Firebase Setup
+1. Create Firebase project
+2. Download `google-services.json`
+3. Place in `android/app/`
+4. Update AndroidManifest.xml
+5. Configure FCM in app
 
-### Mobile Configuration
-- Update API base URL in `lib/services/api_service.dart`
-- Configure Socket.io server URL
-- Set up Firebase project for push notifications
+### Android Permissions
+Add to `android/app/src/main/AndroidManifest.xml`:
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.VIBRATE" />
+```
 
-## 🌐 API Documentation
+## 📡 Socket.io Integration
 
-### Authentication Endpoints
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - User login
-- `GET /api/auth/me` - Get current user
-- `POST /api/auth/logout` - User logout
+### Connection Management
+- Automatic connection on login
+- Reconnection logic
+- Room joining
+- Event handling
 
-### Chat Endpoints
-- `GET /api/chat/history/:userId` - Get chat history
-- `POST /api/chat/send` - Send message
-- `GET /api/chat/conversations` - Get recent conversations
-- `PUT /api/chat/read/:userId` - Mark messages as read
+### Real-time Events
+- Private messages
+- Group messages
+- Typing indicators
+- Online status updates
+- User presence
 
-### Group Endpoints
-- `POST /api/group/create` - Create new group
-- `GET /api/group/my-groups` - Get user's groups
-- `GET /api/group/:groupId` - Get group details
-- `POST /api/group/:groupId/message` - Send group message
+### Message Handling
+- Real-time delivery
+- Local storage
+- Sync with server
+- Error recovery
 
-### User Endpoints
-- `GET /api/user/all` - Get all users
-- `GET /api/user/online` - Get online users
-- `PUT /api/user/profile` - Update profile
-- `GET /api/user/search` - Search users
+## 📁 File Upload
 
-### File Upload Endpoints
-- `POST /api/upload/file` - Upload file
-- `POST /api/upload/profile-image` - Upload profile image
-- `DELETE /api/upload/file/:filename` - Delete file
+### Supported Formats
+- Images: JPEG, PNG, GIF
+- Documents: PDF, DOC, DOCX
+- Media: MP4, MP3
+- Archives: ZIP
 
-## 🔌 Socket.io Events
+### Upload Process
+1. Select file from device
+2. Validate file type/size
+3. Upload with progress
+4. Display in chat
+5. Handle errors
 
-### Client to Server Events
-- `joinUser` - User joins their personal room
-- `privateMessage` - Send private message
-- `groupMessage` - Send group message
-- `typing` - Send typing indicator
+## 🔔 Push Notifications
 
-### Server to Client Events
-- `receivePrivateMessage` - Receive private message
-- `receiveGroupMessage` - Receive group message
-- `userTyping` - Receive typing indicator
-- `userOnline` - User came online
-- `userOffline` - User went offline
+### Firebase Cloud Messaging
+- Token registration
+- Message handling
+- Local notifications
+- Background processing
 
-## 🚀 Deployment
+### Notification Types
+- New messages
+- Chat invitations
+- User mentions
+- System updates
 
-### Backend Deployment
-1. Deploy to Render, Railway, or AWS
-2. Set up MongoDB Atlas for production database
-3. Configure environment variables
-4. Set up SSL certificates
+## 🎯 Features in Detail
 
-### Frontend Deployment
-1. Build the React app: `npm run build`
-2. Deploy to Vercel, Netlify, or AWS S3
-3. Configure environment variables
-4. Set up custom domain
+### Authentication
+- JWT token storage
+- Auto-login
+- Secure storage
+- Session management
 
-### Mobile App Deployment
-1. Build APK: `flutter build apk`
-2. Build for release: `flutter build apk --release`
-3. Upload to Google Play Store
-4. Configure Firebase for production
+### Chat Features
+- Real-time messaging
+- Message timestamps
+- Read receipts
+- File sharing
+- Emoji support
 
-## 🔒 Security Features
+### User Interface
+- Material Design 3
+- Dark mode ready
+- Accessibility
+- Smooth animations
+- Gesture support
 
-- JWT-based authentication
-- Password hashing with bcrypt
-- Rate limiting for API endpoints
-- File upload validation
-- CORS configuration
-- Input sanitization
-- Secure socket connections
+### Performance
+- Lazy loading
+- Image caching
+- Memory management
+- Battery optimization
+- Network efficiency
 
 ## 🧪 Testing
 
-### Backend Testing
+### Unit Tests
 ```bash
-cd backend
-npm test
-```
-
-### Frontend Testing
-```bash
-cd frontend
-npm test
-```
-
-### Mobile Testing
-```bash
-cd android
 flutter test
 ```
 
+### Widget Tests
+```bash
+flutter test --integration
+```
+
+### Integration Tests
+```bash
+flutter drive
+```
+
+### Code Coverage
+```bash
+flutter test --coverage
+```
+
+## 🚀 Deployment
+
+### Google Play Store
+1. Build release APK/AAB
+2. Create Play Console account
+3. Upload app bundle
+4. Configure store listing
+5. Submit for review
+
+### APK Distribution
+```bash
+# Build signed APK
+flutter build apk --release --signing-config release
+
+# Install via ADB
+adb install app-release.apk
+```
+
+### App Signing
+Generate signing key:
+```bash
+keytool -genkey -v -keystore ~/upload-keystore.keystore -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+```
+
+## 🔒 Security Features
+
+- **Secure Storage**: Flutter Secure Storage
+- **Token Encryption**: Encrypted token storage
+- **Network Security**: HTTPS only
+- **Input Validation**: Form sanitization
+- **Permission Handling**: Runtime permissions
+
 ## 📊 Performance Optimization
 
-- Database indexing for faster queries
-- Image compression and caching
-- Lazy loading for chat history
-- Connection pooling for database
-- CDN for static assets
-- Code splitting for frontend
+- **Image Optimization**: Caching and compression
+- **Memory Management**: Efficient widget usage
+- **Network Optimization**: Request batching
+- **Battery Efficiency**: Background processing
+- **Startup Time**: Lazy initialization
 
-## 🤝 Contributing
+## 🐛 Troubleshooting
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+### Common Issues
+- **Socket Connection**: Check server URL
+- **Build Errors**: Update Flutter SDK
+- **Firebase Setup**: Verify configuration
+- **Permissions**: Grant required permissions
 
-## 📝 License
+### Debug Tools
+- Flutter Inspector
+- Dart DevTools
+- Android Studio Debugger
+- Console logging
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Performance Profiling
+```bash
+flutter run --profile
+```
 
-## 🆘 Support
+## 🔄 Updates
 
-For support and questions:
-- Create an issue on GitHub
-- Check the documentation
-- Review the API endpoints
-- Test with the provided examples
+### Version History
+- **v1.0.0**: Initial release
+- **v1.1.0**: Added push notifications
+- **v1.2.0**: Enhanced UI/UX
+- **v1.3.0**: Performance improvements
 
-## 🔄 Version History
+### Upcoming Features
+- Voice messages
+- Video calls
+- Message reactions
+- Dark mode
+- Multi-language support
 
-- **v1.0.0** - Initial release with core features
-- Real-time messaging
-- User authentication
-- File sharing
-- Mobile and web applications
+## 📄 License
 
----
-
-**LastBench** - Connect. Chat. Collaborate. 🚀
+MIT License - see LICENSE file for details.
